@@ -11,7 +11,7 @@ class Item(models.Model):
 	"""
 	Item Model
 	"""
-	num_servings = models.floatField()
+	num_servings = models.FloatField()
 	meal_date = models.DateTimeField()
 
 	food = models.ForeignKey('core.Food', related_name='items')

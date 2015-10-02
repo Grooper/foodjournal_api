@@ -14,6 +14,6 @@ class Food(models.Model):
 	name = models.CharField(max_length=30, unique=True)
 	cals_per_serving = models.IntegerField()
 
-	food_group = models.ForeignKey('core.FoodGroup', related+name='foods')
+	food_group = models.ForeignKey('core.FoodGroup', related_name='foods')
 
 	objects = FoodManager()

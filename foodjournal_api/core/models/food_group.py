@@ -7,7 +7,7 @@ class FoodGroupManager(models.Manager):
 	"""
 	pass
 
-class Meal(models.Model):
+class FoodGroup(models.Model):
 	"""
 	Food Group Model
 	"""
