@@ -3,6 +3,8 @@ from django.contrib import admin
 
 from rest_framework.routers import DefaultRouter
 
+from foodjournal_api.core.views.meal import MealViewSet
+from foodjournal_api.core.views.food_group import FoodGroupViewSet
 from foodjournal_api.core.views.food import FoodViewSet
 from foodjournal_api.core.views.item import ItemViewSet
 
@@ -11,6 +13,8 @@ from foodjournal_api.core.views.item import ItemViewSet
 router = DefaultRouter()
 
 # API Endpoints
+router.register(r'meals', MealViewSet)
+router.register(r'food-groups', FoodGroupViewSet)
 router.register(r'foods', FoodViewSet)
 router.register(r'items', ItemViewSet)
 

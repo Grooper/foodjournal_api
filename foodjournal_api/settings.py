@@ -1,7 +1,9 @@
+import datetime
 import os
+import sys
+
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'hgow&&e*qtkf=p@6uwx@!x17*yc(pol^uuut@255x7)%mh05ug'
@@ -9,11 +11,11 @@ SECRET_KEY = 'hgow&&e*qtkf=p@6uwx@!x17*yc(pol^uuut@255x7)%mh05ug'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Host/Domain names that this Django site can serve
+# https://docs.djangoproject.com/en/1.8/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = []
 
-
 # Application definition
-
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -64,22 +66,20 @@ WSGI_APPLICATION = 'foodjournal_api.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql', 
+        'ENGINE': 'django.db.backends.sqlite3', 
         'NAME': 'foodjournal_database',
-        'USER': 'roycem',
-        'PASSWORD': 'b3UWbYKWl7',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-        'PORT': '8889',
+        # 'USER': 'roycem',
+        # 'PASSWORD': 'b3UWbYKWl7',
+        # 'HOST': '127.0.0.1',   # Or an IP Address that your DB is hosted on
+        # 'PORT': '8889 ',
     }
 }
 
 
 # REST Framework Settings
 # https://www.django-rest-framework.org
-
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
@@ -93,7 +93,6 @@ REST_FRAMEWORK = {
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -107,5 +106,16 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
-
 STATIC_URL = '/static/'
+
+# CORS Headers Whitelist
+# https://github.com/ottoyiu/django-cors-headers
+CORS_ORIGIN_WHITELIST = (
+    'localhost',
+)
+
+# If we're in debug mode enable the Browsable API
+if 'test' not in sys.argv and DEBUG:
+    # REST_FRAMEWORK['DEFAULT_AUTHENTICATION_CLASSES'] += ('rest_framework.authentication.SessionAuthentication',)
+    REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] += ('rest_framework.renderers.BrowsableAPIRenderer',)
+
