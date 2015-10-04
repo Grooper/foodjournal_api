@@ -89,6 +89,10 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.JSONParser',
         'rest_framework.parsers.FormParser',
     ),
+
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+
+    'PAGE_SIZE': 10,
 }
 
 # Internationalization
@@ -110,8 +114,13 @@ STATIC_URL = '/static/'
 
 # CORS Headers Whitelist
 # https://github.com/ottoyiu/django-cors-headers
+CORS_ORIGIN_ALLOW_ALL = False
+
+CORS_URLS_REGEX = r'^/api/.*$'
+
 CORS_ORIGIN_WHITELIST = (
-    'localhost',
+    'localhost:8000',
+    'localhost:8080',
 )
 
 # If we're in debug mode enable the Browsable API
