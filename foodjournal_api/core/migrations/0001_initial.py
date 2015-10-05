@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('num_servings', models.FloatField()),
-                ('meal_date', models.DateTimeField()),
+                ('meal_date', models.DateTimeField(auto_now_add=True)),
                 ('food', models.ForeignKey(related_name='items', to='core.Food')),
             ],
         ),
