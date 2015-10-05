@@ -90,6 +90,10 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.FormParser',
     ),
 
+    'DEFAULT_FILTER_BACKENDS': (
+        'rest_framework.filters.DjangoFilterBackend',
+    ),
+
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
 
     'PAGE_SIZE': 10,
@@ -114,7 +118,7 @@ STATIC_URL = '/static/'
 
 # CORS Headers Whitelist
 # https://github.com/ottoyiu/django-cors-headers
-CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_URLS_REGEX = r'^/api/.*$'
 

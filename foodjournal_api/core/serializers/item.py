@@ -7,6 +7,14 @@ class ItemSerializer(serializers.ModelSerializer):
 	"""
 	Item Model Serializer
 	"""
+	total_calories = serializers.SerializerMethodField()
+
+	def get_total_calories(self, obj):
+		"""
+		Get the total calories of this entry (num_servings * cals_per_serving)
+		"""
+		return obj.num_servings * obj.food.cals_per_serving
+
 	class Meta:
 		model = Item
 		fields = (
@@ -15,4 +23,5 @@ class ItemSerializer(serializers.ModelSerializer):
 			'meal_date',
 			'food',
 			'meal',
+			'total_calories',
 		)
